@@ -4,29 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ATKaryawan</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="/assets/image/vas.png" />
   </head>
   <body>
     <!-- Navbar -->
-    <nav>
-      <a href="/index.html"
-        ><img src="/assets/image/icon.png" alt="icon ATK" width="10%"
-      /></a>
-      <ul>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/index.html"
+          ><img src="/assets/image/icon.png" alt="Logo"
+        /></a>
+      </div>
+      <div class="menu-toggle">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul class="nav-links">
         <li><a href="/index.html">Home</a></li>
         <li><a href="/login.html">Login</a></li>
         <li><a href="/register.html">Register</a></li>
       </ul>
     </nav>
+    <!-- End Navbar -->
 
-    <img src="/assets/image/atk.png" alt="gambar atk" width="10%" />
-    <h2>ATKaryawan</h2>
-    <p>
-      Selamat datang di platform kami, tempat terbaik untuk mengelola karyawan
-      pada toko ATK dengan efisien dan mudah. Dapatkan pengalaman pengelolaan
-      karyawan yang optimal dengan fitur-fitur canggih dan akses yang aman.
-      Jelajahi kemudahan pengelolaan karyawan dengan ATKaryawan, solusi terbaik
-      untuk toko ATK Anda.
-    </p>
+    <!-- Grid Body -->
+    <div class="container">
+      <div class="grid-container">
+        <div class="grid-image">
+          <img src="/assets/image/atk.png" alt="gambar atk" />
+        </div>
+        <div class="grid-text">
+          <h2 class="store-title">ATKaryawan</h2>
+          <p class="store-description">
+            Selamat datang di platform kami, tempat terbaik untuk mengelola
+            karyawan pada toko ATK dengan efisien dan mudah. Dapatkan pengalaman
+            pengelolaan karyawan yang optimal dengan fitur-fitur canggih dan
+            akses yang aman. Jelajahi kemudahan pengelolaan karyawan dengan
+            ATKaryawan, solusi terbaik untuk toko ATK Anda.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End Grid Body -->
+
+    <!-- Footer -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2024 Copyright ATKaryawan.
+    </div>
+    <!-- End Footer -->
   </body>
-  <footer>© 2024 Copyright ATKaryawan.</footer>
+  <script>
+    document
+      .querySelector(".menu-toggle")
+      .addEventListener("click", function () {
+        document.querySelector(".nav-links").classList.toggle("nav-active");
+      });
+  </script>
 </html>
