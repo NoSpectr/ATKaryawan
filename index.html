@@ -11,9 +11,9 @@
     <!-- Navbar -->
     <nav class="navbar">
       <div class="logo">
-        <a href="/index.html"
-          ><img src="/assets/image/icon.png" alt="Logo"
-        /></a>
+        <a href="/index.html">
+          <img src="/assets/image/icon.png" alt="Logo" />
+        </a>
       </div>
       <div class="menu-toggle">
         <div class="line"></div>
@@ -32,7 +32,7 @@
     <div class="container">
       <div class="grid-container">
         <div class="grid-image">
-          <img src="/assets/image/atk.png" alt="gambar atk" />
+          <img src="/assets/image/atk.png" alt="Gambar ATK" />
         </div>
         <div class="grid-text">
           <h2 class="store-title">ATKaryawan</h2>
@@ -47,18 +47,67 @@
       </div>
     </div>
     <!-- End Grid Body -->
+    <h2>Galeri ATK</h2>
+    <!-- Slides -->
+    <div class="slides">
+      <div class="slide">
+        <img src="/assets/slide/s1.png" alt="slide1" />
+      </div>
+      <div class="slide">
+        <img src="/assets/slide/s2.png" alt="slide2" />
+      </div>
+      <div class="slide">
+        <img src="/assets/slide/s3.png" alt="slide3" />
+      </div>
+      <div class="slide">
+        <img src="/assets/slide/s4.png" alt="slide4" />
+      </div>
+      <div class="slide">
+        <img src="/assets/slide/s5.png" alt="slide5" />
+      </div>
+      <div class="slide">
+        <img src="/assets/slide/s6.png" alt="slide6" />
+      </div>
+      <div class="navigation">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(-1)">&#10095;</a>
+      </div>
+    </div>
+    <!-- End Slides -->
 
     <!-- Footer -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    <div class="footer" style="background-color: rgba(0, 0, 0, 0.2)">
       © 2024 Copyright ATKaryawan.
     </div>
     <!-- End Footer -->
+    <script>
+      // Toogle bar
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-links").classList.toggle("nav-active");
+        });
+
+      // slides
+      var slideIndex = 1;
+      showSlides(slideIndex);
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slide");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+      }
+    </script>
   </body>
-  <script>
-    document
-      .querySelector(".menu-toggle")
-      .addEventListener("click", function () {
-        document.querySelector(".nav-links").classList.toggle("nav-active");
-      });
-  </script>
 </html>

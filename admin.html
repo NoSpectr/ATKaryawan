@@ -61,7 +61,70 @@
       </nav>
       <div class="home-content">
         <h1>Selamat Datang Admin!</h1>
+        <div id="clock"></div>
+        <div id="date"></div>
       </div>
     </section>
+    <script>
+      function currentTime() {
+        let date = new Date();
+        let hh = date.getHours();
+        let mm = date.getMinutes();
+        let ss = date.getSeconds();
+        let day = date.getDay();
+        let days = [
+          "Minggu",
+          "Senin",
+          "Selasa",
+          "Rabu",
+          "Kamis",
+          "Jumat",
+          "Sabtu",
+        ];
+        let month = date.getMonth();
+        let months = [
+          "Januari",
+          "Februari",
+          "Maret",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Agustus",
+          "September",
+          "Oktober",
+          "November",
+          "Desember",
+        ];
+        let year = date.getFullYear();
+        let session = "AM";
+        if (hh > 12) {
+          session = "PM";
+          hh = hh - 12;
+        }
+        hh = hh < 10 ? "0" + hh : hh;
+        mm = mm < 10 ? "0" + mm : mm;
+        ss = ss < 10 ? "0" + ss : ss;
+        let time = hh + ":" + mm + ":" + ss + " " + session;
+        let formattedDate =
+          days[day] + ", " + date.getDate() + " " + months[month] + " " + year;
+        document.getElementById("clock").innerText = time;
+        document.getElementById("date").innerText = formattedDate;
+        var t = setTimeout(function () {
+          currentTime();
+        }, 1000);
+      }
+      currentTime();
+
+      // Sidebar onclick
+      let sidebar = document.querySelector(".sidebar");
+      let sidebarBtn = document.querySelector(".sidebarBtn");
+      sidebarBtn.onclick = function () {
+        sidebar.classList.toggle("active");
+        if (sidebar.classList.contains("active")) {
+          sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+      };
+    </script>
   </body>
 </html>

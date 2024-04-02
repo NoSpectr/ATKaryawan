@@ -126,15 +126,6 @@ body {
   margin-right: 5px;
 }
 
-.show-password {
-  margin-left: 5px;
-  margin-top: 0; 
-}
-
-.form-group label[for="show-password"] {
-  margin-left: 5px;
-}
-
 button[type="submit"] {
   display: block;
   width: 107%;

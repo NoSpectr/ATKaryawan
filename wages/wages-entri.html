@@ -78,7 +78,7 @@
               <option value="kasir">Kasir</option>
               <option value="staff_gudang">Staff Gudang</option>
               <option value="kebersihan">Kebersihan</option>
-            </select>            
+            </select>
             <label for="tgl">Tanggal Pembayaran</label>
             <input
               class="input"
@@ -115,5 +115,15 @@
         </div>
       </div>
     </section>
+    <script>
+      let sidebar = document.querySelector(".sidebar");
+      let sidebarBtn = document.querySelector(".sidebarBtn");
+      sidebarBtn.onclick = function () {
+        sidebar.classList.toggle("active");
+        if (sidebar.classList.contains("active")) {
+          sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+      };
+    </script>
   </body>
 </html>

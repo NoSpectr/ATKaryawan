@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
 }
 
@@ -16,7 +17,7 @@ body {
   width: auto;
 }
 .menu-toggle {
-  display: none; /* Sembunyikan hamburger menu secara default */
+  display: none;
   cursor: pointer;
 }
 
@@ -29,7 +30,7 @@ body {
 
 .navbar {
   display: flex;
-  justify-content: space-between; /* Membuat logo dan toggle berada di ujung kiri dan kanan */
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -70,7 +71,7 @@ body {
 
 .grid-image img {
   width: 100%;
-  padding: 150px 0px 150px 0px;
+  padding: 150px 0px 125px 0px;
 }
 
 .store-title {
@@ -84,14 +85,62 @@ body {
   color: #666;
 }
 
-.p-3 {
-  padding: 0.75rem;
+.slides {
+  margin: auto;
+  position: relative;
+  text-align: center; /* Center the slides horizontally */
+}
+
+.slides .slide {
+  display: none;
+}
+
+.slides .slide img {
+  width: 40%;
+  animation-name: fade;
+  animation-duration: 1.5s;
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.slides .navigation {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 38%;
+}
+
+.slides .navigation .prev,
+.slides .navigation .next {
+  cursor: pointer;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  user-select: none;
+  transition: 0.6s ease;
+}
+
+.slides .navigation .prev:hover,
+.slides .navigation .next:hover {
+  background: rgba(0, 0, 0, 1);
+}
+
+h2 {
   text-align: center;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
 }
 
 /* CSS untuk tampilan ponsel */
 .menu-toggle {
-  display: none; /* Sembunyikan hamburger menu secara default */
+  display: none;
   cursor: pointer;
 }
 
@@ -114,7 +163,7 @@ body {
     background-color: #e4e4e4;
     position: absolute;
     top: 60px;
-    right: 0; 
+    right: 0;
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -134,7 +183,7 @@ body {
   }
 
   .nav-links li:first-child {
-    margin-left: 0; 
+    margin-left: 0;
   }
 
   .nav-active {
@@ -157,7 +206,7 @@ body {
   }
 
   .grid-text {
-    order: 2; 
+    order: 2;
   }
 
   .store-title {
@@ -165,6 +214,18 @@ body {
   }
   .store-description {
     margin: 20px;
-  text-align: justify;
+    text-align: justify;
+  }
+
+  .slides .slide img {
+    width: 100%;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    margin: 0 auto; /* Center the image horizontally */
+  }
+
+  .slides .navigation {
+    width: 100%;
+    top: 45%;
   }
 }
