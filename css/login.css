@@ -99,18 +99,17 @@ body {
 }
 
 .login-form button {
-  width: 100%;
+  width: 108%;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #4caf50;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 .login-form button:hover {
-  background-color: #222;
+  background-color: #45a049;
 }
 
 .login-form p a {
@@ -164,7 +163,7 @@ p a:hover {
 
 /* CSS untuk tampilan ponsel */
 .menu-toggle {
-  display: none; 
+  display: none;
   cursor: pointer;
 }
 

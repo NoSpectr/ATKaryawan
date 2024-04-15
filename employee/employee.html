@@ -85,7 +85,7 @@
               <td><img src="/assets/photo/kar1.jpg" width="80pt" alt="" /></td>
               <td>Yuliana</td>
               <td>Karyawan</td>
-              <td>Laki-laki</td>
+              <td>Perempuan</td>
               <td>08456123789</td>
               <td>Jl. Bunga</td>
               <td>Malang, 7 September 1990</td>
@@ -94,7 +94,11 @@
                 <button type="button" class="btn btn-edit">
                   <a href="#">Edit</a>
                 </button>
-                <button type="button" class="btn btn-delete">
+                <button
+                  type="button"
+                  class="btn btn-delete"
+                  onclick="hapusData()"
+                >
                   <a href="#">Hapus</a>
                 </button>
               </td>
@@ -104,6 +108,7 @@
       </div>
     </section>
     <script>
+      //Sidebar
       let sidebar = document.querySelector(".sidebar");
       let sidebarBtn = document.querySelector(".sidebarBtn");
       sidebarBtn.onclick = function () {
@@ -112,6 +117,19 @@
           sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
         } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       };
+
+      //pupop boxes pada konfirmasi tombol hapus
+      function hapusData() {
+        let konfirmasi = confirm(
+          "Apakah Anda yakin ingin menghapus data karyawan ini?"
+        );
+        if (konfirmasi == true) {
+          // penghapusan data
+          console.log("Data berhasil dihapus.");
+        } else {
+          console.log("Penghapusan data dibatalkan.");
+        }
+      }
     </script>
   </body>
 </html>

@@ -89,7 +89,11 @@
                 <button type="button" class="btn btn-edit">
                   <a href="#">Edit</a>
                 </button>
-                <button type="button" class="btn btn-delete">
+                <button
+                  type="button"
+                  class="btn btn-delete"
+                  onclick="hapusData()"
+                >
                   <a href="#">Hapus</a>
                 </button>
               </td>
@@ -107,6 +111,19 @@
           sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
         } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       };
+
+      //pupop boxes pada konfirmasi tombol hapus
+      function hapusData() {
+        let konfirmasi = confirm(
+          "Apakah Anda yakin ingin menghapus data karyawan ini?"
+        );
+        if (konfirmasi == true) {
+          // Tempatkan kode penghapusan data di sini
+          console.log("Data berhasil dihapus."); // contoh: hanya mencetak pesan ke konsol
+        } else {
+          console.log("Penghapusan data dibatalkan."); // contoh: hanya mencetak pesan ke konsol
+        }
+      }
     </script>
   </body>
 </html>

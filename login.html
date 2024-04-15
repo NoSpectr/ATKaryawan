@@ -40,7 +40,7 @@
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required />
         </div>
-        <button type="submit">Login</button>
+        <button type="button" onclick="submitLoginForm()">Login</button>
         <p>Don't you have an account? <a href="/register.html">Register</a></p>
       </form>
     </div>
@@ -58,5 +58,23 @@
       .addEventListener("click", function () {
         document.querySelector(".nav-links").classList.toggle("nav-active");
       });
+
+    //event button login
+    function submitLoginForm() {
+      // Mengambil nilai dari input username dan password
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+
+      // validasi sederhana
+      if (username === "admin" && password === "1") {
+        alert("Login berhasil!"); // Menampilkan pesan jika login berhasil
+        // Simpan informasi login ke localStorage
+        localStorage.setItem("loggedIn", "true");
+        // Alihkan pengguna ke halaman admin.html
+        window.location.href = "/admin.html";
+      } else {
+        alert("Login gagal. Periksa kembali username dan password Anda."); // Menampilkan pesan jika login gagal
+      }
+    }
   </script>
 </html>
