@@ -57,7 +57,7 @@
 
     <!-- Isi dari halaman -->
     <div class="home-content">
-      <h3>Input Layanan</h3>
+      <h3>Input Employee</h3>
       <div class="form-login">
         <form action="">
           <label for="photo">Upload Your Photo</label>
