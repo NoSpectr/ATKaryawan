@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ($_SESSION['username'] == null) {
+  header('location:../login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,35 +34,43 @@
       <li>
         <a href="../employee/employee.php">
           <i class="fa-solid fa-users"></i>
-          <span class="links_name">Employee</span>
+          <span class="links_name">Karyawan</span>
         </a>
       </li>
       <li>
         <a href="../wages/wages.php" class="active">
           <i class="fa-solid fa-sack-dollar"></i>
-          <span class="links_name">Wages</span>
+          <span class="links_name">Gaji</span>
         </a>
       </li>
       <li>
-        <a href="../index.php">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span class="links_name">Logout</span>
+        <a href="../logout.php">
+          <i class="bx bx-log-out"></i>
+          <span class="links_name">Log out</span>
         </a>
       </li>
+
     </ul>
   </div>
+  <!-- navigation -->
   <section class="home-section">
     <nav>
       <div class="sidebar-button">
         <i class="bx bx-menu sidebarBtn"></i>
       </div>
       <div class="profile-details">
-        <span class="admin_name">ATK Admin</span>
+        <span class="admin_name">
+          <?php
+          if (isset($_SESSION['username'])) {
+            echo $_SESSION['username'];
+          }
+          ?>
+        </span>
       </div>
     </nav>
     <!-- Isi dari page -->
     <div class="home-content">
-      <h3>Wages</h3>
+      <h3>Data Gaji</h3>
       <button type="button" class="btn btn-tambah">
         <a href="wages-entri.php">Tambah Data</a>
       </button>
@@ -96,7 +110,7 @@
   <script>
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function () {
+    sidebarBtn.onclick = function() {
       sidebar.classList.toggle("active");
       if (sidebar.classList.contains("active")) {
         sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");

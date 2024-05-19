@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+  header('location:login.php');
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +19,8 @@
   <title>ATKaryawan</title>
 </head>
 
-<body>
+<body onload="displayDate()">
+  <!-- sidebar -->
   <div class="sidebar">
     <div class="logo-details">
       <img src="assets/image/vas.png" alt="" width="30" />
@@ -28,93 +36,75 @@
       <li>
         <a href="employee/employee.php">
           <i class="fa-solid fa-users"></i>
-          <span class="links_name">Employee</span>
+          <span class="links_name">Karyawan</span>
         </a>
       </li>
       <li>
         <a href="wages/wages.php">
           <i class="fa-solid fa-sack-dollar"></i>
-          <span class="links_name">Wages</span>
+          <span class="links_name">Gaji</span>
         </a>
       </li>
       <li>
-        <a href="index.php">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span class="links_name">Logout</span>
+        <a href="logout.php">
+          <i class="bx bx-log-out"></i>
+          <span class="links_name">Log out</span>
         </a>
       </li>
     </ul>
   </div>
+  <!-- navigation -->
   <section class="home-section">
     <nav>
       <div class="sidebar-button">
         <i class="bx bx-menu sidebarBtn"></i>
       </div>
       <div class="profile-details">
-        <span class="admin_name">ATK Admin</span>
+        <span class="admin_name">
+          <?php
+          if (isset($_SESSION['username'])) {
+            echo $_SESSION['username'];
+          }
+          ?>
+        </span>
       </div>
     </nav>
+    <!-- dashboard -->
     <div class="home-content">
-      <h1>Selamat Datang Admin!</h1>
-      <div id="clock"></div>
-      <div id="date"></div>
+      <h2 id="text">
+        <?php
+        if (isset($_SESSION['username'])) {
+          echo 'Selamat Datang, ' . $_SESSION['username'] . '!';
+        } else {
+          echo 'Selamat Datang!';
+        }
+        ?>
+      </h2>
+      <h3 id="date"></h3>
     </div>
   </section>
+
   <script>
-    function currentTime() {
+    function displayDate() {
+      const months = ["Januari", "Februari", "Maret", "April", "Mei",
+        "Juni", "Juli", "Agustus", "September",
+        "Oktober", "November", "Desember"
+      ];
+      const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis",
+        "Jumat", "Sabtu"
+      ];
       let date = new Date();
-      let hh = date.getHours();
-      let mm = date.getMinutes();
-      let ss = date.getSeconds();
-      let day = date.getDay();
-      let days = [
-        "Minggu",
-        "Senin",
-        "Selasa",
-        "Rabu",
-        "Kamis",
-        "Jumat",
-        "Sabtu",
-      ];
-      let month = date.getMonth();
-      let months = [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Agustus",
-        "September",
-        "Oktober",
-        "November",
-        "Desember",
-      ];
-      let year = date.getFullYear();
-      let session = "AM";
-      if (hh > 12) {
-        session = "PM";
-        hh = hh - 12;
-      }
-      hh = hh < 10 ? "0" + hh : hh;
-      mm = mm < 10 ? "0" + mm : mm;
-      ss = ss < 10 ? "0" + ss : ss;
-      let time = hh + ":" + mm + ":" + ss + " " + session;
-      let formattedDate =
-        days[day] + ", " + date.getDate() + " " + months[month] + " " + year;
-      document.getElementById("clock").innerText = time;
-      document.getElementById("date").innerText = formattedDate;
-      var t = setTimeout(function () {
-        currentTime();
-      }, 1000);
+      let tanggal = date.getDate();
+      let hari = days[date.getDay()];
+      let bulan = months[date.getMonth()];
+      let tahun = date.getFullYear();
+      document.getElementById("date").innerHTML = `${hari}, ${tanggal} ${bulan} ${tahun}`;
     }
-    currentTime();
 
     // Sidebar onclick
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function () {
+    sidebarBtn.onclick = function() {
       sidebar.classList.toggle("active");
       if (sidebar.classList.contains("active")) {
         sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");

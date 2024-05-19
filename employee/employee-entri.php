@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ($_SESSION['username'] == null) {
+  header('location:../login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,78 +34,94 @@
       <li>
         <a href="../employee/employee.php" class="active">
           <i class="fa-solid fa-users"></i>
-          <span class="links_name">Employee</span>
+          <span class="links_name">Karyawan</span>
         </a>
       </li>
       <li>
         <a href="../wages/wages.php">
           <i class="fa-solid fa-sack-dollar"></i>
-          <span class="links_name">Wages</span>
+          <span class="links_name">Gaji</span>
         </a>
       </li>
       <li>
-        <a href="/index.php">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span class="links_name">Logout</span>
+        <a href="../logout.php">
+          <i class="bx bx-log-out"></i>
+          <span class="links_name">Log out</span>
         </a>
       </li>
+
     </ul>
   </div>
+  <!-- navigation -->
   <section class="home-section">
     <nav>
       <div class="sidebar-button">
         <i class="bx bx-menu sidebarBtn"></i>
       </div>
       <div class="profile-details">
-        <span class="admin_name">ATK Admin</span>
+        <span class="admin_name">
+          <?php
+          if (isset($_SESSION['username'])) { 
+            echo $_SESSION['username'];
+          }
+          ?>
+        </span>
       </div>
     </nav>
 
     <!-- Isi dari halaman -->
     <div class="home-content">
-      <h3>Input Employee</h3>
+      <h3>Input Data Karyawan</h3>
       <div class="form-login">
-        <form action="">
-          <label for="photo">Upload Your Photo</label>
-          <input type="file" name="photo" id="photo" style="margin-bottom: 20px" />
-          <br />
-          <label for="employee">Nama Karyawan</label>
-          <input class="input" type="text" name="name" id="name" placeholder="Input Nama Karyawan" />
-          <label for="jabatan">Jabatan</label>
+        <form action="employee-proses.php" method="POST" enctype="multipart/form-data">
+          <label for="photo">Upload Foto Karyawan</label>
+          <input type="file" name="photo" id="photo" style="margin-bottom: 20px" /><br />
+
+          <label for="name">Nama Lengkap</label>
+          <input class="input" type="text" name="name" id="name" placeholder="Masukkan Nama Lengkap Karyawan" />
+
+          <label for="jabatan">Pilih Jabatan</label>
           <select class="input" name="jabatan" id="jabatan">
-            <option value="karyawan">Karyawan</option>
-            <option value="kasir">Kasir</option>
-            <option value="staff_gudang">Staff Gudang</option>
-            <option value="kebersihan">Kebersihan</option>
+            <option value="Karyawan">Karyawan</option>
+            <option value="Kasir">Kasir</option>
+            <option value="Staff Gudang">Staff Gudang</option>
+            <option value="Kebersihan">Kebersihan</option>
           </select>
-          <label for="jenis_kelamin">Jenis Kelamin</label>
-          <select class="input" name="jenis_kelamin" id="jenis_kelamin">
-            <option value="laki_laki">Laki-laki</option>
+
+          <label for="jk">Pilih Jenis Kelamin</label>
+          <select class="input" name="jenis_kelamin" id="jk">
+            <option value="Laki-laki">Laki-laki</option>
             <option value="perempuan">Perempuan</option>
           </select>
-          <label for="employee">No Telepon</label>
-          <input class="input" type="text" name="noTelp" id="noTelp" placeholder="Input No Telepon" />
-          <label for="employee">Alamat</label>
-          <input class="input" type="text" name="alamat" id="alamat" placeholder="Input Alamat" />
-          <label for="employee">Tempat Tanggal Lahir</label>
-          <input class="input" type="text" name="ttl" id="ttl" placeholder="Input Tempat Tanggal Lahir" />
-          <label for="status">Status Karyawan</label>
-          <select class="input" name="status" id="status">
-            <option value="karyawan_tetap">Karyawan Tetap</option>
-            <option value="karyawan_kontrak">Karyawan Kontrak</option>
-            <option value="karyawan_magang">Karyawan Magang</option>
+
+          <label for="noTelp">Nomor Telepon</label>
+          <input class="input" type="text" name="noTelp" id="noTelp" placeholder="Masukkan Nomor Telepon Karyawan" />
+
+          <label for="alamat">Alamat</label>
+          <input class="input" type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat Karyawan" />
+
+          <label for="ttl">Tempat Tanggal Lahir</label>
+          <input class="input" type="text" name="ttl" id="ttl" placeholder="Masukkan Tempat Tanggal Lahir, contoh: Jakarta, 01 Januari 1990" />
+
+          <label for="status_karyawan">Pilih Status Karyawan</label>
+          <select class="input" name="status_karyawan" id="status">
+            <option value="Karyawan Tetap">Karyawan Tetap</option>
+            <option value="Karyawan Kontrak">Karyawan Kontrak</option>
+            <option value="Karyawan Magang">Karyawan Magang</option>
           </select>
-          <button type="submit" class="btn btn-simpan" name="simpan">
-            Simpan
-          </button>
+
+          <button type="submit" class="btn btn-simpan" name="simpan">Simpan Data</button>
         </form>
       </div>
     </div>
+    <!-- end -->
+
   </section>
   <script>
+    //Sidebar
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function () {
+    sidebarBtn.onclick = function() {
       sidebar.classList.toggle("active");
       if (sidebar.classList.contains("active")) {
         sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");

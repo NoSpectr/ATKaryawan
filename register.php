@@ -29,29 +29,25 @@
   <!-- End Navbar -->
 
   <!-- Form Register -->
-  <form class="register-form">
+  <form class="register-form" action="register-proses.php" method="post">
     <h2>Register</h2>
     <div class="form-group">
-      <label for="full-name">Full Name</label>
-      <input type="text" id="full-name" name="full-name" required />
-    </div>
-    <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
     </div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
+      <input type="text" id="username" name="username" placeholder="Enter your username" required />
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
     </div>
     <div class="form-group">
       <label for="confirm-password">Confirm Password</label>
-      <input type="password" id="confirm-password" name="confirm-password" required />
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required />
     </div>
-    <button type="submit">Register</button>
+    <button type="submit" name="register">Register</button>
     <p>Already have an account? <a href="login.php">Login</a></p>
   </form>
   <!-- End Form Register -->
@@ -65,7 +61,7 @@
 <script>
   document
     .querySelector(".menu-toggle")
-    .addEventListener("click", function () {
+    .addEventListener("click", function() {
       document.querySelector(".nav-links").classList.toggle("nav-active");
     });
 </script>
