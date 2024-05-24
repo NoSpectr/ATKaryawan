@@ -10,11 +10,8 @@
   position: fixed;
   height: 100%;
   width: 240px;
-  background: #31363F;
-  background-image: linear-gradient(
-    #31363F,
-    #31363F
-  );
+  background: #31363f;
+  background-image: linear-gradient(#31363f, #31363f);
   transition: all 0.5s ease;
 }
 .sidebar.active {
@@ -59,10 +56,10 @@
   transition: all 0.4s ease;
 }
 .sidebar .nav-links li a.active {
-  background: #76ABAE;
+  background: #76abae;
 }
 .sidebar .nav-links li a:hover {
-  background: #76ABAE;
+  background: #76abae;
 }
 .sidebar .nav-links li i {
   min-width: 60px;

@@ -5,12 +5,12 @@ if (!isset($_GET['id'])) {
     echo "
       <script>
         alert('Tidak ada ID yang Terdeteksi');
-        window.location = 'employee.php';
+        window.location = 'wages.php';
       </script>
     ";
 }
-//data karyawan berdasarkan id
-$sql = "SELECT * FROM tb_karyawan WHERE id_karyawan = '$id'";
+// Data gaji berdasarkan id
+$sql = "SELECT * FROM tb_gaji WHERE id_gaji = '$id'";
 $result = mysqli_query($koneksi, $sql);
 $data = mysqli_fetch_assoc($result);
 
@@ -47,13 +47,13 @@ if ($_SESSION['username'] == null) {
                 </a>
             </li>
             <li>
-                <a href="../employee/employee.php" class="active">
+                <a href="../employee/employee.php">
                     <i class="fa-solid fa-users"></i>
                     <span class="links_name">Karyawan</span>
                 </a>
             </li>
             <li>
-                <a href="../wages/wages.php">
+                <a href="../wages/wages.php" class="active">
                     <i class="fa-solid fa-sack-dollar"></i>
                     <span class="links_name">Gaji</span>
                 </a>
@@ -86,38 +86,22 @@ if ($_SESSION['username'] == null) {
 
         <!-- Isi dari halaman -->
         <div class="home-content">
-            <h3>Edit Data Karyawan</h3>
+            <h3>Edit Data Gaji</h3>
             <div class="form-login">
-                <form action="employee-proses.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?php echo $data['id_karyawan']; ?>">
-                    <label for="photo">Upload Foto Karyawan</label>
-                    <input type="file" name="photo" id="photo" style="margin-bottom: 20px" /><br />
-                    <img src="../img_employee/<?php echo $data['photo']; ?>" alt="Foto Karyawan" width="100" /><br />
-                    <label for="name">Nama Lengkap</label>
-                    <input class="input" type="text" name="name" id="name" placeholder="Masukkan Nama Lengkap Karyawan" value="<?php echo $data['nama_karyawan']; ?>" />
-                    <label for="jabatan">Pilih Jabatan</label>
-                    <select class="input" name="jabatan" id="jabatan">
-                        <option value="Karyawan" <?php if ($data['jabatan'] == 'Karyawan') echo 'selected'; ?>>Karyawan</option>
-                        <option value="Kasir" <?php if ($data['jabatan'] == 'Kasir') echo 'selected'; ?>>Kasir</option>
-                        <option value="Staff Gudang" <?php if ($data['jabatan'] == 'Staff Gudang') echo 'selected'; ?>>Staff Gudang</option>
-                        <option value="Kebersihan" <?php if ($data['jabatan'] == 'Kebersihan') echo 'selected'; ?>>Kebersihan</option>
-                    </select>
-                    <label for="jenis_kelamin">Pilih Jenis Kelamin</label>
-                    <select class="input" name="jenis_kelamin" id="jenis_kelamin">
-                        <option value="Laki-laki" <?php if ($data['jk'] == 'Laki-laki') echo 'selected'; ?>>Laki-laki</option>
-                        <option value="Perempuan" <?php if ($data['jk'] == 'Perempuan') echo 'selected'; ?>>Perempuan</option>
-                    </select>
-                    <label for="noTelp">Nomor Telepon</label>
-                    <input class="input" type="text" name="noTelp" id="noTelp" placeholder="Masukkan Nomor Telepon Karyawan" value="<?php echo $data['no_telp']; ?>" />
-                    <label for="alamat">Alamat</label>
-                    <input class="input" type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat Karyawan" value="<?php echo $data['alamat']; ?>" />
-                    <label for="ttl">Tempat Tanggal Lahir</label>
-                    <input class="input" type="text" name="ttl" id="ttl" placeholder="Masukkan Tempat Tanggal Lahir, contoh: Jakarta, 01 Januari 1990" value="<?php echo $data['ttl']; ?>" />
-                    <label for="status_karyawan">Pilih Status Karyawan</label>
-                    <select class="input" name="status_karyawan" id="status_karyawan">
-                        <option value="Karyawan Tetap" <?php if ($data['status_karyawan'] == 'Karyawan Tetap') echo 'selected'; ?>>Karyawan Tetap</option>
-                        <option value="Karyawan Kontrak" <?php if ($data['status_karyawan'] == 'Karyawan Kontrak') echo 'selected'; ?>>Karyawan Kontrak</option>
-                        <option value="Karyawan Magang" <?php if ($data['status_karyawan'] == 'Karyawan Magang') echo 'selected'; ?>>Karyawan Magang</option>
+                <form action="wages-proses.php" method="POST">
+                    <input type="hidden" name="id_gaji" value="<?php echo $data['id_gaji']; ?>">
+                    <label for="nama">Nama Karyawan</label>
+                    <input class="input" type="text" name="nama_karyawan" id="nama" value="<?php echo $data['nama_karyawan']; ?>" readonly />
+                    <label for="jabatan">Jabatan</label>
+                    <input class="input" type="text" name="jabatan" id="jabatan" value="<?php echo $data['jabatan']; ?>" readonly />
+                    <label for="tgl_pembayaran">Tanggal Pembayaran</label>
+                    <input class="input" type="date" name="tgl_pembayaran" id="tgl_pembayaran" value="<?php echo $data['tgl_pembayaran']; ?>" />
+                    <label for="gaji_pokok">Gaji Pokok</label>
+                    <input class="input" type="text" name="gaji_pokok" id="gaji_pokok" value="<?php echo $data['gaji_pokok']; ?>" />
+                    <label for="status_pembayaran">Status Pembayaran</label>
+                    <select class="input" name="status_pembayaran" id="status_pembayaran">
+                        <option value="sukses" <?php if ($data['status_pembayaran'] == 'sukses') echo 'selected'; ?>>Sukses</option>
+                        <option value="belum_sukses" <?php if ($data['status_pembayaran'] == 'belum_sukses') echo 'selected'; ?>>Belum Sukses</option>
                     </select>
                     <button type="submit" class="btn btn-simpan" name="edit">Simpan Perubahan</button>
                 </form>

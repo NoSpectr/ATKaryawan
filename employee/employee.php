@@ -4,7 +4,6 @@ if ($_SESSION['username'] == null) {
   header('location:../login.php');
 }
 include '../koneksi.php';
-// Query untuk mendapatkan data karyawan dari tabel tb_karyawan
 $sql = "SELECT * FROM tb_karyawan";
 $result = mysqli_query($koneksi, $sql);
 ?>

@@ -4,6 +4,15 @@ if (!isset($_SESSION['username'])) {
   header('location:login.php');
   exit();
 }
+include 'koneksi.php';
+// Menghitung jumlah data di tb_karyawan
+$sql_karyawan = "SELECT COUNT(*) as total_karyawan FROM tb_karyawan";
+$result_karyawan = $koneksi->query($sql_karyawan);
+$total_karyawan = $result_karyawan->fetch_assoc()['total_karyawan'];
+// Menghitung jumlah data di tb_gaji
+$sql_gaji = "SELECT COUNT(*) as total_gaji FROM tb_gaji";
+$result_gaji = $koneksi->query($sql_gaji);
+$total_gaji = $result_gaji->fetch_assoc()['total_gaji'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +90,43 @@ if (!isset($_SESSION['username'])) {
         ?>
       </h2>
       <h3 id="date"></h3>
-    </div>
+      <div class="widget">
+        <div class="widget-box">
+          <img src="assets/image/employee.png" alt="Icon 1" style="max-width: 10%;">
+          <h4>Total Data Karyawan</h4>
+          <p><?php echo $total_karyawan; ?></p>
+        </div>
+        <div class="widget-box">
+          <img src="assets/image/wages.png" alt="Icon 2 " style="max-width: 10%;">
+          <h4>Total Data Gaji</h4>
+          <p><?php echo $total_gaji; ?></p>
+        </div>
+      </div>
+
+      <style>
+        .widget {
+          display: flex;
+          margin: 20px 0;
+          padding: 10px;
+          border-radius: 8px;
+        }
+
+        .widget-box {
+          margin: 0 10px;
+          padding: 20px;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          text-align: center;
+        }
+
+        .widget-box p {
+          font-size: 1.2em;
+          color: #666;
+          margin: 10px 0 0;
+        }
+      </style>
   </section>
 
   <script>
